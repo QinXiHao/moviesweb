@@ -1,0 +1,33 @@
+---------------------------------------------------------------
+[ 2019-07-16T17:09:42+08:00 ] 127.0.0.1 GET www.qin1999.com/public/index.php
+[运行时间：0.602502s] [吞吐率：1.66req/s] [内存消耗：2,759.81kb] [文件加载：52]
+[ info ] [ LANG ] D:\phpStudy\WWW\douban\thinkphp\lang\zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => '',
+    1 => NULL,
+    2 => NULL,
+  ),
+)
+[ info ] [ HEADER ] array (
+  'host' => 'www.qin1999.com',
+  'connection' => 'keep-alive',
+  'upgrade-insecure-requests' => '1',
+  'user-agent' => 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/66.0.3359.181 Safari/537.36',
+  'accept' => 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8',
+  'accept-encoding' => 'gzip, deflate',
+  'accept-language' => 'zh-CN,zh;q=0.9',
+  'cookie' => 'pgv_pvi=1329254400',
+)
+[ info ] [ PARAM ] array (
+)
+[ info ] [ RUN ] app\index\controller\Index->index[ D:\phpStudy\WWW\douban\application\index\controller\Index.php ]
+[ info ] [ DB ] INIT mysql
+[ info ] [ VIEW ] D:\phpStudy\WWW\douban\public/../application/index\view\index\index.html [ array (
+) ]
+[ info ] [ LOG ] INIT File
+[ sql ] [ DB ] CONNECT:[ UseTime:0.013720s ] mysql:host=127.0.0.1;dbname=qin_xi_hao;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `qin_admin_user` [ RunTime:0.055105s ]
+[ sql ] [ SQL ] SELECT * FROM `qin_admin_user` [ RunTime:0.000544s ]
