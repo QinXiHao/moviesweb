@@ -1,0 +1,602 @@
+<title>注册会员</title>
+<div class="layui-card layadmin-header">
+  <div class="layui-breadcrumb" lay-filter="breadcrumb">
+    <a lay-href="">主页</a>
+    <a><cite>后台管理</cite></a>
+    <a><cite>生态鸡管理</cite></a>
+    <a><cite>注册会员</cite></a>
+  </div>
+</div>
+
+<!-- <div class="layui-fluid"> -->
+  <div class="layui-row layui-col-space15">
+    <div class="layui-col-md12">
+      <div class="layui-row layui-col-space15">
+        <div class="layui-col-md12">
+
+
+
+          <div class="layui-card">
+            <div class="layui-tab layui-tab-brief layadmin-latestData">
+              <ul class="layui-tab-title">
+                <li class="layui-this"><span id="all" onclick="test()">全部用户</span></li>
+              </ul>
+              <div class="layui-tab-content">
+                <div class="layui-tab-item layui-show">
+                  <div class="demoTable">
+                    搜索：昵称
+                    <div class="layui-inline">
+                      <input class="layui-input" name="id" id="seekidmember" autocomplete="off">
+                    </div>
+                    ID
+                    <div class="layui-inline">
+                      <input class="layui-input" name="ids" id="seekidmembers" autocomplete="off">
+                    </div>
+                    姓名
+                    <div class="layui-inline">
+                      <input class="layui-input" name="seekidmembe" id="seekidmembe" autocomplete="off">
+                    </div>
+                    <button class="layui-btn" data-type="reload" id="seekbutmember">搜索</button>
+                    <button class="layui-btn"  onclick="memberadd()">
+                      <i class="layui-icon">&#xe608;</i> 添加
+                    </button>
+                    &nbsp;等级
+                    <div class="layui-inline">
+                      <select name="level_name"  id="level_change" autocomplete="off" style="width: 200%;height: 38px;" >
+                        <option value="0">全部</option>
+                        <option value="1">注册会员</option>
+                        <option value="2">农场主</option>
+                        <option value="3">内部人员</option>
+                        <option value="4">社区老板</option>
+                        <option value="7">农场主B</option>
+                      </select>
+                    </div>
+                    <div>
+                      <h3 id="why" style="color: red"></h3>
+
+                    </div>
+                  <table id="LAY-admin-autority-member"  lay-filter="member_topSearchtest"></table>
+                  <script type="text/html" id="barDemo">
+                      <a class="layui-btn layui-btn-xs" lay-event="edit"><i class="layui-icon layui-icon-edit"></i>编辑</a>
+                      <a class="layui-btn layui-btn-danger layui-btn-xs" lay-event="del"><i class="layui-icon layui-icon-delete"></i>删除</a>
+                  </script>
+                </div>
+
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+  </div>
+<!-- </div> -->
+<!--&lt;!&ndash; 账户状态 &ndash;&gt;<a class="layui-btn layui-btn-warm layui-btn-sm" lay-event="detail">查看</a>-->
+<script type="text/html" id="admin_authority_member_href">
+  <input type="checkbox" name="status" value="{{d.id}}" lay-skin="switch" lay-text="正常|禁用" lay-filter="enableDemo" {{ d.status == 0 ? 'checked' : '' }}>
+</script>
+<script type="text/html" id="member_operate">
+  <a class="layui-btn layui-btn-xs" lay-event="member_admin_user_data_sva" >信息编辑</a>
+  <a class="layui-btn  layui-btn-xs" lay-event="member_admin_user_role">设置权限组</a>
+
+</script>
+
+<script type="text/html" id="member_user_group">
+    {{d.user_group.Group}}
+</script>
+
+
+<script type="text/html" id="operatecmember">
+
+<form class="layui-form" action="">
+
+      <div class="layui-card">
+        <div class="layui-card-header">添加用户信息</div>
+        <div class="layui-card-body layui-row layui-col-space10">
+          <div class="layui-col-md12">
+
+
+        <div class="layui-form-item">
+          <div class="layui-inline">
+            <label class="layui-form-label">用户ID</label>
+            <div class="layui-input-inline">
+              <input type="tel" name="uid" id="uid" lay-verify="required|number" autocomplete="off" class="layui-input">
+              <div class="layui-form-mid layui-word-aux">用户ID</div>
+            </div>
+          </div>
+        </div>
+        <div class="layui-form-item">
+          <div class="layui-inline">
+            <label class="layui-form-label">鸡数量</label>
+            <div class="layui-input-inline">
+              <input type="tel" name="chknum" id="chknum" lay-verify="required|number" autocomplete="off" class="layui-input">
+              <div class="layui-form-mid layui-word-aux">鸡数量</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="layui-form-item">
+          <div class="layui-inline">
+            <label class="layui-form-label">开始时间</label>
+            <div class="layui-input-inline">
+              <input type="tel" name="time" id="time" lay-verify="required" autocomplete="off" class="layui-input" placeholder="yyyy-MM-dd HH:mm:ss">
+              <div class="layui-form-mid layui-word-aux">开始时间</div>
+            </div>
+          </div>
+        </div>
+            <div class="layui-form-item">
+              <div class="layui-inline">
+                <label class="layui-form-label">单只鸡最大产蛋量</label>
+                <div class="layui-input-inline">
+                  <input type="tel" name="maxegg" id="maxegg" lay-verify="required" autocomplete="off" class="layui-input" value=300>
+                  <div class="layui-form-mid layui-word-aux">单只鸡最大产蛋量</div>
+                </div>
+              </div>
+            </div>
+            <div class="layui-form-item">
+              <div class="layui-inline">
+                <label class="layui-form-label">是否分成</label>
+                <div class="layui-input-inline">
+                  <select name="rebate"  id="rebate"  autocomplete="off" >
+                    <option value="0">否</option>
+                    <option value="1">是</option>
+                  </select>
+                </div>
+              </div>
+            </div>
+            <div class="layui-form-item">
+              <div class="layui-input-block">
+                <button class="layui-btn" lay-submit lay-filter="formDemooperatec">立即提交</button>
+              </div>
+            </div>
+
+        </div>
+      </div>
+  </div>
+</form>
+
+</script>
+
+<script>
+  //用户列表
+  layui.use(['table','form'], function(){
+    var $ = layui.$
+    ,table = layui.table
+    ,form = layui.form
+    ,laytpl = layui.laytpl
+    ,admin = layui.admin;
+    //登录信息
+      sum();
+    table.render({
+      elem: '#LAY-admin-autority-member'
+      ,url: '/adminlay/MainUser/ajaxindex' //模拟接口
+      ,page: true
+      ,where: {
+        access_token: layui.data('layuiAdmin').access_token
+      }
+      ,cols: [[
+       {checkbox: true, fixed: true}
+        ,{ field: 'user_id', title: '用户id', minWidth: 80, sort: true,width:80}
+        ,{ field: 'realname', title: '真实姓名', minWidth: 120, width:120}
+        ,{field: 'nickname', title: '昵称', minWidth: 160,width:160}
+        ,{field: 'fname', title: '一级上级', minWidth: 160,width:160 }
+        ,{field: 'sname', title: '二级上级', minWidth: 160,width:160 }
+        ,{field: 'mobile', title: '手机号', minWidth: 160,width:160 }
+        ,{field: 'reg_time', title: '注册时间', minWidth: 160,width:160 }
+        ,{field: 'user_money', title: '用户金额', minWidth: 100,width:100 }
+        ,{field: 'underling_number', title: '下线总数', minWidth: 100,width:100 }
+        ,{field: 'level_name', title: '等级', minWidth: 160,width:160 }
+        ,{field: 'chk_points', title: '积分', minWidth: 100,width:100 }
+        ,{field: 'sell_num', title: '授权数量', minWidth: 100,width:100 }
+        ,{field:'right', title: '操作', minWidth: 240,fixed:'right',width:240,align:'center',templet:function(d){
+                    if((d.first_leader==0 && d.level==2) || (d.first_leader==0 && d.level ==7)){
+                        return '<a class="layui-btn layui-btn-warm layui-btn-xs" lay-event="generalize"><i class="layui-icon layui-icon-add-1"></i>推广权限</a><a class="layui-btn layui-btn-xs" lay-event="edit"><i class="layui-icon layui-icon-edit"></i>编辑</a><a class="layui-btn layui-btn-danger layui-btn-xs" lay-event="del"><i class="layui-icon layui-icon-delete"></i>删除</a>'
+                       }
+                    else if((d.first_leader!=0)  || (d.level ==7)){
+                        return '<a class="layui-btn layui-btn-xs" lay-event="edit"><i class="layui-icon layui-icon-edit"></i>编辑</a><a class="layui-btn layui-btn-danger layui-btn-xs" lay-event="del"><i class="layui-icon layui-icon-delete"></i>删除</a>'
+                    }else{
+                        return '<a class="layui-btn layui-btn-normal layui-btn-xs" lay-event="bind"><i class="layui-icon layui-icon-add-1"></i>添加上级</a><a class="layui-btn layui-btn-xs" lay-event="edit"><i class="layui-icon layui-icon-edit"></i>编辑</a><a class="layui-btn layui-btn-danger layui-btn-xs" lay-event="del"><i class="layui-icon layui-icon-delete"></i>删除</a>'
+
+                     }
+                }, }
+      ]]
+        ,limit: 20
+      ,id: 'MainUser_getList'
+    });
+
+    //监听表格复选框选择
+    table.on('checkbox(member_topSearchtest)', function(obj){
+            console.log(obj.data.user_id);
+    });
+    //监听工具条
+    table.on('tool(member_topSearchtest)', function(obj){ //注：tool是工具条事件名，test是table原始容器的属性 lay-filter="对应的值"
+      var data = obj.data; //获得当前行数据
+      var layEvent = obj.event; //获得 lay-event 对应的值（也可以是表头的 event 参数对应的值）
+      var tr = obj.tr; //获得当前行 tr 的DOM对象
+
+      if(layEvent === 'member_admin_user_role'){ //删除
+
+        var $ = layui.$
+        //获取用户组 列表
+        admin.req({
+          url: '/adminlay/Role/getList' //实际使用请改成服务端真实接口
+          ,type: 'DELETE' //实际使用请改成服务端真实接口
+          ,data: {
+          }
+          ,done: function(res){
+            member_role = { "data": res.data, "user_id": obj.data.id,'name': obj.data.name}
+
+
+              membergetTpl = $('#operatecmember_role').html();
+              laytpl(membergetTpl).render(member_role, function(html){
+                  layer.open({
+                      type: 1,
+                      skin: 'layui-layer-rim',
+                      area: ['450px', '600px'],
+                      content: html
+                    });
+
+                    form.render(); //更新全部
+              });
+          }
+        });
+
+      } else if(layEvent === 'member_admin_user_data_sva'){ //编辑
+
+
+
+
+      }else if(layEvent === 'del'){ //删除一条数据
+        //console.log(data.user_id);
+        var $ = layui.$;
+           layer.confirm('真的删除吗', function(index){
+                    $.ajax({
+                        url: "/adminlay/MainUser/ajaxindex",
+                        type: "POST",
+                        data:{"uid":data.user_id,"action":"delete","access_token": layui.data('layuiAdmin').access_token},
+                        dataType: "json",
+                        success: function(data){
+                            if(data==1){
+                                layer.close(index);
+                                layer.msg("删除成功", {icon: 6});
+                                location.reload();
+                            }else{
+                                layer.msg("删除失败", {icon: 5});
+                            }
+                        }
+
+                    });
+            });
+      }else if(layEvent === 'edit'){ //编辑一条数据
+        //console.log(data.user_id);
+        var $ = layui.$;
+        layer.prompt({
+                    formType: 2,
+                    value: data.user_money,
+                    title: '当前用户：'+data.nickname,
+                    area: ['600px', '24px'] //自定义文本域宽高
+                }, function(val, index, elem){
+                     if(val===""){
+                        layer.msg("请输入用户金额");
+                        return false;
+                    }
+
+                    if($('#firstleader').val()==="" || isNaN(parseInt($('#firstleader').val()))){
+                        layer.tips("请输入正确的一级上线ID",$('#firstleader'));
+                        return false;
+                    }
+                    if($('#level').val()===""){
+                        layer.tips("请输入等级",$('#level'));
+                        return false;
+                    }
+                    if($('#chk_points').val()===""){
+                        layer.tips("积分",$('#chk_points'));
+                        return false;
+                    }
+                    $.ajax({
+                        url: "/adminlay/MainUser/ajaxindex",
+                        type: "POST",
+                        data:{"uid":data.user_id,"action":"edit","firstleader":$('#firstleader').val(),"level":$('#level').val(),"user_money":val,"chk_points":$('#chk_points').val(), "access_token": layui.data('layuiAdmin').access_token},
+                        dataType: "json",
+                        success: function(data){
+                            if(data==1){
+                                layer.close(index);
+                                layer.msg("更新成功", {icon: 6});
+                                location.reload();
+                            }else if(data==3){
+                                layer.msg("输入必须是数字", {icon: 5});
+                            }else if(data==4){
+                                layer.msg("农场主不能添加上级", {icon: 5});
+                            } else{
+                                layer.msg("更新失败", {icon: 5});
+                            }
+                        }
+                    });
+                    layer.close(index);
+        });
+        $(".layui-layer-input").before("用户金额");//插入语句
+        $(".layui-layer-content").append("<br/>上级ID("+data.fname+")<input type=\"text\" id= \"firstleader\" class=\"layui-input\" />");
+        $(".layui-layer-content").append('<br/>等级<br/><select name="level_se" id="level" style="width: 100%;height:36px;"><option value="1">注册会员</option>\n' +
+            '              <option value="2">农场主</option>\n' +
+            '              <option value="3">内部人员</option>\n' +
+            '              <option value="4">社区老板</option>\n' +
+            '              <option value="7">农场主B</option>\n' +
+            '              </select>');
+        $(".layui-layer-content").append("<br/>积分<input type=\"text\" id= \"chk_points\" class=\"layui-input\" />");
+        $("#firstleader").val(data.first_leader);
+        $("#level").val(data.level);
+        // form.render('select');
+        $("#chk_points").val(data.chk_points);
+      }else if(layEvent === 'bind'){ //一条数据
+          var $ = layui.$;
+          layer.prompt({
+              formType: 2,
+              value: '',
+              title: '当前用户：'+data.nickname,
+              area: ['600px', '24px'] //自定义文本域宽高
+          }, function(val, index, elem){
+              if(val===""){
+                  layer.msg("请输入上级ID");
+                  return false;
+              }
+              if (isNaN(val)) {
+                  layer.alert("请输入数字！");
+                  return;
+              }
+              // if($('#serach').val()===""){
+              //     layer.tips("请输入要搜索的昵称",$('#serach'));
+              //     return false;
+              // }
+              $.ajax({
+                  url: "/adminlay/MainUser/ajaxindex",
+                  type: "POST",
+                  data:{"uid":data.user_id,"action":"bind","first_leader":val, "access_token": layui.data('layuiAdmin').access_token},
+                  dataType: "json",
+                  success: function(data){
+                      if(data==1){
+                          layer.close(index);
+                          layer.msg("更新成功", {icon: 6});
+                          location.reload();
+                      }else if(data==3){
+                          layer.msg("输入必须是数字", {icon: 5});
+                      }else if(data==4){
+                          layer.msg("农场主不能添加上级", {icon: 5});
+                      }else{
+                          layer.msg("更新失败", {icon: 5});
+                      }
+                  }
+              });
+              layer.close(index);
+          });
+          $(".layui-layer-input").before("上级ID");//插入语句
+      }else if (layEvent === 'generalize'){
+          var $ = layui.$;
+          layer.prompt({
+              formType: 2,
+              title: '当前用户：'+data.nickname,
+              area: ['600px', '24px'] //自定义文本域宽高
+          }, function(val, index, elem){
+              if(val===""){
+                  layer.msg("请输入认养资格");
+                  return false;
+              }
+              if($('#sell_num').val()===""){
+                  layer.tips("推广数量",$('#sell_num'));
+                  return false;
+              }
+              $.ajax({
+                  url: "/adminlay/MainUser/ajaxindex",
+                  type: "POST",
+                  data:{"uid":data.user_id,"action":"generalize","foster_status":val,"sell_num":$('#sell_num').val(), "access_token": layui.data('layuiAdmin').access_token},
+                  dataType: "json",
+                  success: function(data){
+                      if(data==1){
+                          console.log(1122);
+                          layer.close(index);
+                          layer.msg("更新成功", {icon: 6});
+                          location.reload();
+                      }
+                      else{
+                          layer.msg("更新失败", {icon: 5});
+                      }
+                  }
+              });
+              layer.close(index);
+          });
+          $(".layui-layer-input").before("请输入认养资格:(默认:20000/100)");//插入语句
+          $(".layui-layer-content").append("<br/>请输入授权推广数量:(默认:800)<input type=\"text\" id= \"sell_num\" class=\"layui-input\"  />");
+
+          // form.render('select');
+
+      }
+    });
+
+
+  //监听操作
+  form.on('switch(enableDemo)', function(obj){
+    id = this.value;
+    type = obj.elem.checked;
+    admin.req({
+      url: '/adminlay/MainUser/updataStatus'
+      ,data: {
+        id:id,
+        type:type,
+      }
+      ,done: function(res){
+        layer.msg('操作成功', {
+          offset: '30px'
+          ,icon: 1
+          ,time: 3000
+        });
+      }
+    });
+
+  });
+
+  //监听提交  修改
+  form.on('submit(operatecmember_role_filter)', function(data){
+
+      admin.req({
+        url: '/adminlay/MainUser/updataRole' //实际使用请改成服务端真实接口
+        ,data: {
+          uid:data.field.uid,
+          rid:data.field.rid
+        }
+        ,done: function(res){
+          layer.msg('操作成功', {
+            offset: '30px'
+            ,icon: 1
+            ,time: 3000
+          });
+        }
+      });
+
+
+
+
+    admin.events.refresh()
+    return false;
+  });
+
+
+
+  //监听提交  添加
+  form.on('submit(formDemooperatec)', function(data){
+      var $ = layui.$;
+      var uid=$('#uid').val();
+      var chknum=$('#chknum').val();
+      var maxegg=$('#maxegg').val();
+      var time=$('#time').val();
+      var rebate=$('#rebate').val();
+                    $.ajax({
+                        url: "/adminlay/MainUser/ajaxindex",
+                        type: "POST",
+                        data:{"uid":uid,"action":"add","chknum":chknum,"rebate":rebate,"maxegg":maxegg,"time":time, "access_token": layui.data('layuiAdmin').access_token},
+                        dataType: "json",
+                        success: function(data){
+                            if(data==1){
+                                layer.msg("添加成功", {icon: 6});
+                                location.reload();
+                            }else{
+                                layer.msg("添加失败", {icon: 5});
+                            }
+                        }
+                    });
+    //   //这里一般是发送修改的Ajax请求
+    //   admin.req({
+    //     url: '/adminlay/Role/addRole' //实际使用请改成服务端真实接口
+    //     ,data: {
+    //       name:data.field.name
+    //     }
+    //     ,done: function(res){
+    //       layer.msg('操作成功', {
+    //         offset: '30px'
+    //         ,icon: 1
+    //         ,time: 3000
+    //       });
+    //     }
+    //   });
+    // admin.events.refresh()
+    return false;
+  });
+
+  //搜索
+  $('#seekbutmember').on('click', function(){
+
+    table.reload('MainUser_getList',{
+      where: {
+        whe: $('#seekidmember').val(),
+        whee: $('#seekidmembers').val(),
+        wheee: $('#seekidmembe').val(),
+        //…
+      }
+      ,page: {
+        curr: 1 //重新从第 1 页开始
+      }
+    });
+  });
+      $('#level_change').on('change', function(){
+
+          table.reload('MainUser_getList',{
+              where: {
+                  level_id: $('#level_change').val(),
+                  //…
+              }
+              ,page: {
+                  curr: 1 //重新从第 1 页开始
+              }
+          });
+      });
+
+      //
+      // form.on('select(LAY-user-level-change)', function(data){
+      //     //执行重载
+      //     //console.dir(data);
+      //     table.reload('MainUser_getList', {
+      //         where: {
+      //             level_id: data.value
+      //
+      //         }
+      //         ,page: {
+      //             curr: 1 //重新从第 1 页开始
+      //         }
+      //     });
+      // });
+});
+
+// 添加
+function memberadd(){
+    Data = '';
+        var $ = layui.$
+        bbc = $('#operatecmember').html();
+    layui.use(['laytpl','admin', 'laydate','form'], function(){
+
+
+        var laytpl = layui.laytpl
+        ,laydate = layui.laydate
+        ,form = layui.form;
+
+        layer.open({
+        type: 1,
+        skin: 'layui-layer-rim',
+        area: ['450px', '600px'],
+        content: bbc
+        });
+
+        //日期时间选择器
+        laydate.render({
+            elem: '#time'
+            ,type: 'datetime'
+        });
+        form.render();
+    })
+}
+function sum(){
+      var $ = layui.$;
+      $.ajax({
+          url: "/adminlay/MainUser/ajaxindex",
+          type: "POST",
+          data: {"action": "sum","access_token": layui.data('layuiAdmin').access_token},
+          dataType: "json",
+          success: function (res) {
+              // if (res.count) {
+              //     //layer.alert(res);
+              //     var str=res;
+              //     $("#why").text(str);
+              // } else {
+              //     layer.alert('错误');
+              // }
+              //var res=JSON.parse(res.count);
+              var res=JSON.stringify(res.count);
+              var res=JSON.parse(res);
+              res=res.register+' '+res.farmer+' '+res.inner+' '+res.boss+' ' + res.newfarmer;
+              $("#why").text(res);
+          }
+      });
+}
+// layui.use('ssr/ssruserlist', layui.factory('ssr/ssruserlist'));
+</script>
+
+
+
